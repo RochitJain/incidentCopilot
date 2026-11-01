@@ -1,26 +1,29 @@
 const incidentRepository = require('./incident.repository')
 
 async function getAllIncident(){
-    const res = await incidentRepository.findAllIncident()
-    return res
+    return await incidentRepository.findAllIncident()
+}
+
+async function getIncidentLogs(id) {
+    return await incidentRepository.getIncidentLogs(id)
+}
+
+async function addIncidentLogs(log_id, incident_id) {
+    return await incidentRepository.addIncidentLogs(log_id, incident_id)
 }
 
 async function getIncidentById(id){
-    const res = await incidentRepository.findIncidentById(id)
-    return res
+    return await incidentRepository.findIncidentById(id)
 }
 async function updateIncidentDetails(body,id) {
-    const res = await incidentRepository.updateIncidentDetails(body,id)
-    return res;
+    return await incidentRepository.updateIncidentDetails(body,id);
 }
 async function addIncident(body) {
-    const res = await incidentRepository.addIncident(body)
-    return res
+    return await incidentRepository.addIncident(body)
 }
 
 async function updateIncident(body,id) {
-    const res = await incidentRepository.updateIncident(body,id)
-    return res
+    return await incidentRepository.updateIncident(body,id)
 }
 
-module.exports = {getAllIncident, addIncident, updateIncident, getIncidentById, updateIncidentDetails}
+module.exports = {getAllIncident, addIncident, updateIncident, getIncidentById, updateIncidentDetails, addIncidentLogs, getIncidentLogs}

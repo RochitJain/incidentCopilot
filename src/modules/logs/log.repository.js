@@ -1,4 +1,5 @@
 const connection = require("../../config/db");
+const AppError = require("../../utils/AppError");
 
 async function addLogs(data) {
   try {
@@ -20,7 +21,7 @@ async function addLogs(data) {
     return result.rows;
   } catch (err) {
     console.log(err)
-    throw new Error(err);
+    throw new AppError(err, 500)
     
   }
 }
@@ -39,7 +40,7 @@ ORDER BY id DESC
 LIMIT 10;`);
     return result.rows;
   } catch (err) {
-    throw err
+    throw new AppError(err, 500)
   }
 }
 

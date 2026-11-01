@@ -2,7 +2,8 @@
 const crypto = require("crypto");
 const logger = require("../config/logger");
 const logService = require('../modules/logs/log.service')
-const {activeRequests,httpRequestDuration,httpRequestTotal} = require('../config/metrics')
+const {activeRequests,httpRequestDuration,httpRequestTotal} = require('../config/metrics');
+const AppError = require("../utils/AppError");
 
 const requestLogger = (req, res, next) => {
     // Generate unique ID for each request
@@ -56,7 +57,7 @@ const requestLogger = (req, res, next) => {
         try{
             await logService.addLogsService(logData)
         }catch(err){
-            throw new Error(err)
+            throw new AppError(err, 500)
         }
     });
     
