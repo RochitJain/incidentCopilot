@@ -4,8 +4,8 @@ const AppError = require("../../utils/AppError");
 async function addLogs(data) {
   try {
     const {
-      level,
       service,
+      level,
       method,
       endpoint,
       statusCode,
@@ -13,16 +13,15 @@ async function addLogs(data) {
       message,
       requestId
     } = data;
+
     const result = await connection.query(
       `Insert into logs (level, service, method, endpoint, status_code, duration_ms, message, metaData) 
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING * `,
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
       [level, service, method, endpoint, statusCode, durationMs, message, JSON.stringify({requestId})],
     );
-    return result.rows;
+    return 'Log added'
   } catch (err) {
-    console.log(err)
     throw new AppError(err, 500)
-    
   }
 }
 
@@ -36,8 +35,7 @@ async function getLogs() {
     endpoint
 FROM logs
 WHERE endpoint LIKE '%/logs%'
-ORDER BY id DESC
-LIMIT 10;`);
+ORDER BY id DESC`);
     return result.rows;
   } catch (err) {
     throw new AppError(err, 500)

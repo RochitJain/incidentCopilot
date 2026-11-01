@@ -7,11 +7,11 @@ const incidentRouter = require('../src/modules/incidents/incident.route')
 const errorMiddleware = require('./middleware/error.middleware')
 
 app.use(express.json())
-app.use(requestLogger)
-app.get("/metrics", async (req, res) => {
-    res.set("Content-Type", register.contentType);
-    res.end(await register.metrics());
-});
+// app.use(requestLogger)
+// app.get("/metrics", async (req, res) => {
+//     res.set("Content-Type", register.contentType);
+//     res.end(await register.metrics());
+// });
 app.use('/api/v1',logRouter)
 app.use('/api/v1',incidentRouter)
 app.use(errorMiddleware)

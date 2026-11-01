@@ -44,6 +44,7 @@ const requestLogger = (req, res, next) => {
             "info";
 
         const logData = {
+            service: 'incident-copilot',
             level,
             message: "HTTP request completed",
             requestId,

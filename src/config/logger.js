@@ -6,9 +6,7 @@ const logger = winston.createLogger({
   level: "info",
 
   // Metadata attached to every log
-  defaultMeta: {
-    service: "incident-copilot"
-  },
+
 
   // How log entries are formatted
   format: winston.format.combine(
